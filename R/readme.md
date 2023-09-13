@@ -96,6 +96,34 @@ matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)
 [4,]    4    8   12   16   20   24
 ```
 ### 資料框架
+與矩陣一樣是2維的，不同的特點是它內部的資料可以是不同型態的。
+
+```r
+  1 id <- c(1, 2, 3, 4)
+  2 age <- c(25, 30, 35, 40)
+  3 sex <- c("Male", "Male", "Female", "Female")
+  4 pay <- c(300, 400, 500, 4500)
+  5 x.dataframe <- data.frame(id,age,sex,pay)
+  6 x.dataframe
+  7 edit(x.dataframe)
+```
+
+![](./img/00.png)
+
 ### 因子
+
+Factor 是特別的向量，它會記入資料的元素。
+```r
+  1 f <- factor(c("南","北","北","南","南","南"))
+  2 f
+  3
+```
+
+```
+[1] 南 北 北 南 南 南
+Levels: 北 南
+```
+
+
 ### 列表
 
