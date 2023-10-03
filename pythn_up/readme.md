@@ -110,3 +110,83 @@ img2[80:120,10:150] = 0
 彩度空間: hsv
 亮度空間: yuv , ycbcy yiq
 
+
+
+## 載入系統+ 變更工作路徑
+
+```py
+import os 
+os.getcwd() #顯示
+mywd = "/home/HserName" # 使用者的自訂路徑
+os.chdir(mywd)#切換工作路徑
+
+```
+
+## 載入套件
+
+```py
+improt cv2
+import numpy
+```
+
+## 讀取
+cv2.imread('影像檔名',格式)
+
+
+### 格式有3
+
+1. cv2.IMEAD\_COLOR 以全彩/3通道來讀取
+1. cv2.IMREAD\_GRAYSALE 灰階/1通道處理
+1. cv2.INREAD\_UNCHANGED以省像本身尺寸來讀取
+
+### 顯示秀圖
+
+- cv2.namedWindow('視窗名',視窗格式)
+- cv2.imshow('視窗名',影像陣列名)
+
+#### 視窗格式有2
+
+1. cv2.WINDOW\_AUTOSIZE 視窗隨影像大小開啟1
+1. cc2.WINDOW\_NORMAL 視窗開啟之後可伸縮0
+
+---
+
+## 寫入
+
+- cv2.imwrite('寫數影像檔名',影像陣列名)
+檔名支援
+- bmp
+- tiff
+- png
+- jpg
+
+## 等待&關閉
+
+- cv2.waitKey(0)
+- cv2.destroyAllWindows()
+
+```py
+img1 = cv2.imread('Lena.tiff',1)
+img2 = cv2.imread('Lena.tiff',0)#或讀到Y
+cv2.imshow('img1',img1)
+cv2.imshow('img2',img2)
+
+#觀察此時img1與img2的shape,ndim
+
+img3 = cv2.imread('F16 256_8.bmp',1)
+img3 = cv2.imread('F16 256_8.bmp',0)
+# 觀察
+cv2.imwrite('Dimg1.png',img1)
+cv2.imwrite('Dimg2.png',img2)
+
+```
+
+## 補充
+當要存檔的時候可以選用壓縮格式,jpg,這個下的指令如下
+- cv2.imwrite('Lenal0.jpg',img1,[int(cv2.IMWRITE_JPEG_QUALITY),10])
+
+1. 用Q=10,20,30來存檔
+1. 觀察檔案大小(檔案總管中）
+1. 顯示??
+
+
