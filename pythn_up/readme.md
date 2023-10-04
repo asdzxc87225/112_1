@@ -189,4 +189,76 @@ cv2.imwrite('Dimg2.png',img2)
 1. 觀察檔案大小(檔案總管中）
 1. 顯示??
 
+# 10-4
+
+## 幾何處里
+
+### 旋轉Rotation
+
+```py
+r_mat=cv2.getRotationMatrix2D((x,y),ang,scale)
+r_img=cv2.warpAffine(src,r_mat,(w,h))
+
+#(s,y):旋轉中心座標
+#scale:縮放
+#src:原始影像(處理前)
+#(w,h):原始影像的尺寸(h,w)
+```
+### 旋轉(Transpose)
+
+```py
+r_img = cv2.transpose(src)
+```
+
+### 翻轉Flip
+
+```py
+f_img = cv2.flip(src,para)
+"""
+para: 1  水平
+      0  垂直
+      -1 水平家垂直
+"""
+```
+### 縮放
+
+```py
+rsize_img = cv2.resize(src,dsize[,fx=None,fy=Node,interpolation=None])
+"""
+dsize:縮放後影響大小(水平,垂直)
+fx,fy:沿水平軸 / 垂直軸縮放參數
+                ()
+interpolation:內插方法，常見的有如下:
+    1. cv2.INTER_AREA #區域內插 (快但是效果不佳)
+    2. cv2.INTERNEAREST#近鄰內插
+    3. cv2.INTER_LINEAR#線性內插
+    4. cv2.INTER_CUBIC#雙線性 (小果好但是 速度慢)
+"""
+```
+
+### ex
+
+```py
+import cv2
+import numpy
+
+if __name__ == "__main__":
+    img = cv2.imread('../img/Lena.tiff',-1)
+    cv2.imshow('orginal',img)
+    print('orig img size',img.shape)
+
+    #1
+    scale=1.5
+    w= int(img.shape[1]*scale)
+    h= int(img.shape[0]*scale)
+    dsize=(w,h)
+    rsize_img1 = cv2.resize(img,dsize, interpolation = cv2.INTER_AREA)
+    cv2.imshow('AREA',rsize_img1)
+
+    #2 
+    rsize_img2 = cv2.resize(img, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_NEAREST)
+    cv2.imshow("NEAREST",rsize_img2)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+```
 
