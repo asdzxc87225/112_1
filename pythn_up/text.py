@@ -5,3 +5,4 @@ print(img.ndim)
 print(id(img))
 print(img.shape)
 print(img.dtype)
+

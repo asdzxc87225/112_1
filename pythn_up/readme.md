@@ -261,4 +261,72 @@ if __name__ == "__main__":
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 ```
+# 10-11
+----
+# 繪圖
+## 參數
 
+- pt1.pt2:開啟座標(水平,垂直)
+- color : 顏色
+- thickness:厚度（線寬）(預設為1;整數)(-1:填充)
+- lineType 線的種類(cv2.Line\_8)
+
+## 建立空白圖像
+- np.zeros((h,w,c),np.uint8) 
+- np.ones((h,w,c),dtype='unity8')
+### np.zeros((h,w,c),np.uint8) 
+h:高
+w:寬
+c:通道
+np.uint8 無號8位元整數資料
+
+### 改變圖像顏色
+img[:] = (B,G,R)\
+        =(Y)
+
+img.fill(Y) # 填滿
+
+### 範例
+```py
+img1 = np.zeros((256,512,3),np.uint8)
+img2 = np.ones((150,300),dtype = 'uint8')
+cv2.imshow('img1',img1)
+cv2.imshow('img2',img2)
+img1[ : ] = ( , , )
+img2.fill = ( )
+```
+
+## 直線
+- cv2.line(img,pt1,pt2,color,thickness)
+## 方框
+- cv2.rectangle(img,pt1,pt2,color,tk)
+## 方形
+- cv2.circle(img,(w,h),r,color,tk)
+## 橢圓
+- cv2.ellipse(img,(w,h),軸長,旋轉角度,起始角度,結束角度,color,tk)
+- 軸長=(短軸,長軸)
+- 選轉角度:(角度>0:瞬時轉)
+- 起始/結束角度 指定畫出橢圓的部份
+
+## 範例
+### 劃線-紅 ＋ 線寬5
+cv2.line(img,(10,10),(150,10),(0,0,255),5)
+
+### 矩形-綠色+線寬3（空心)
+cv2.rectangle( )
+### 矩形-藍色+線寬3（填滿)
+cv2.rectangle( )
+
+### 圓形-黃色+半徑15+線寬3
+cv2.cirrle( )
+
+## text 加入文字
+openCV中加入的座標是文字的左下角PIL中加入" " 左上角
+- cv2.putText(img,text,(w,h),字形,自大小,color,tk,linetype)
+
+$$
+^{p}_{cv2}he
+$$
+
+------
+- fsize:文字的大小(預設=1,可為小數)

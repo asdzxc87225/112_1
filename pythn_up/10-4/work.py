@@ -35,15 +35,19 @@ class img_set():
     def Run(self):
         while True:
             if self.flage == 0:#得到圖片
+                print('============================')
                 self.Get_Img()
                 self.flage = 1
             elif self.flage == 1:#引導選折功能
+                print('============================')
                 self.Guide_to_use()
                 self.flage = 2
             elif self.flage == 2:#加工圖片與確定參數
+                print('============================')
                 self.Run_Mode()
                 self.flage = 3
             elif self.flage == 3:#引導後許動作
+                print('============================')
                 print(r'0.切換功能')
                 print(r'1.修改參數')
                 print(r'2.換圖片')
@@ -60,9 +64,11 @@ class img_set():
                     print('============================')
                     self.flage = 0
                 elif self.flage_mode == '3':
+                    print('============================')
                     self.Out_Img()
                     self.flage = 3
                 elif self.flage_mode == '4':
+                    self.flage = 4
                     break
                 else:
                     self.flage = 2
@@ -146,10 +152,10 @@ class img_set():
                         self.flage_mode = input('請輸入上面的編號來修改')
                         if self.flage_mode == '1':
                             self.Rotation_ang = float(input('旋轉角度：'))
-                        if self.flage_mode == '2':
+                        elif self.flage_mode == '2':
                             self.ImgCenter_x = int(input('旋轉中心W：'))
                             self.ImgCenter_y = int(input('旋轉中心H：'))
-                        if self.flage_mode == '3':
+                        elif self.flage_mode == '3':
                             self.Rotation_scale = float(input('放大倍率:'))
                         else:
                             print('--------------------------------------------------')
@@ -166,8 +172,9 @@ class img_set():
                     print('運行')
                     break
                 else :
-                    print('--------------------------------------------------')
                     self.Flip_para = int(input('你要選折的模式'))
+
+                print('--------------------------------------------------')
             self.Flip()
 
         elif self.RunMode == 'r':
