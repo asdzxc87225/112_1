@@ -330,3 +330,121 @@ $$
 
 ------
 - fsize:文字的大小(預設=1,可為小數)
+
+# 利用PIL套件加入文字
+
+(中文)ImageDraw
+
+1. 利用TTF 或是TTC字形檔 \
+c:\\Windows\Fonts
+1. from PIL import ImageFonl,ImageDraw,Image
+
+## 力
+
+```py
+#0. 建立空白影像
+    img = np.zeros((250,500,3),np.uint8)
+    cv2.imshow('Ori',img)
+
+    #1.定義需要加入的文字及其自行
+    fext = '   happy\nNew Year'
+    #fontPath1 = 'C:\\Windows\\Fonts\\prist'
+    #linux use
+    fontPath1 = '/usr/share/fonts/opentype/NotoSansCJK-DemiLight.ttc'
+
+    #2 定義字形變數
+    fl1 = ImageFont.truetype(fontPath1,100 )
+
+    #3 將numpy 陣列轉為PIL影像( )
+    imgP = Image.fromarray(img)
+
+    #4在PIL影像上加入文字
+    draw1 = ImageDraw.Draw(imgP)
+    draw1.text((30,30) , fext, font=fl1, fill=(0,100,0))
+
+    #5將PIL影像轉回Numpy陣列
+    img2 = np.array( imgP )
+    cv2.imshow('After', img2)
+    cv2.waitKey(0)
+    cv2.destroyWindow()
+
+```
+
+# ex
+
+```py
+text1 = "招財進寶"
+text2 = "天天開心"
+text3 = 'make a wish'
+font1 = ' '
+font2 = ' '
+font3 = ' '
+```
+
+# 10-25
+
+## 模主
+
+### 模主 套件 名稱空間
+
+
+1. 模主(mode)
+1. 套件(package)
+1. 命名空間(namespace)
+載入模組或是見時python以此名稱建立的名稱空間。
+此模組或套件內的寒式...須透過.做階乘取用
+```py
+dir()
+#--------------------
+import os 
+dir()
+#------------------
+import sys
+dir()
+dir(argv)
+dir(sys.argv)
+
+### 載入方試
+```py
+#1.
+import 模組or套件名
+import 模主名.函數名
+#2.
+import 模主名 or 套件名 as 別名
+import 模主名.函式名 as 別名
+#3.
+from 模主名 or 套件名 import 函式名
+#
+import matplotlib.pylot as plt
+from PIL import Image,Image Dram
+```
+### 命名規則
+### 指定
+1. 單變數指定
+```py
+code 
+a = 8
+b = a 
+a = [1,2]
+' ',指定運算子,_______
+```
+
+### 多變數指定
+
+方法
+```py
+a =1 
+b =2 
+c =3
+pirnt(a,b,c)
+
+a,b,c=1,2,3
+print(a,b,c)
+```
+| | b=內容| c=a|d=a.copy()|
+|--|--|--|--|
+|a=8|相同|相同|x|
+|a=2.5|不同|相同|X|
+|a="app"|b相同|相同|x|
+|a=[1,2]|不同|相同|不同|
+|a=(1,2)|不同|相同|X|

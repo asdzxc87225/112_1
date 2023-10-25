@@ -2,12 +2,12 @@ import  matplotlib.pyplot as plt
 import  matplotlib
 import numpy as np
 
-matplotlib.rc('font', family='TW-Sung')
+matplotlib.rc('font', family='AR PL UKai CN')
 
 if __name__ == '__main__':
     x = np.linspace(0,2*np.pi,10)
     y = np.sinc(x)
-    plt.plot()
+    plt.plot(x,y)
     plt.xlabel('X')
     plt.ylabel('Y')
     plt.yticks(np.linspace(0,1,11))
