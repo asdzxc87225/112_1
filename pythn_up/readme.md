@@ -448,3 +448,119 @@ print(a,b,c)
 |a="app"|b相同|相同|x|
 |a=[1,2]|不同|相同|不同|
 |a=(1,2)|不同|相同|X|
+
+
+# 11-1
+
+## 變數命名規則
+
+1. 易懂 有意義
+1. 變數內容可用許改變的
+1. 使用小寫字母，若為常數使用大寫字母
+1. 名稱可由大小寫字母、底線、數字與中文組成，但是低一個字不可以是數字
+1. 大小寫不同
+1. 不可是保留字
+1. 主副程式內的變入名稱允許相同，但若副程式內的變數不要傳出，則敬可能主副程式內變數取名不同
+
+## 查詢保留字
+```py
+>>> import keyword
+>>> keyword.kwlist
+['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+```
+
+
+## 多變數的宣告及改變內容直
+
+|宣告|改變內容直|
+|--|--|
+|a=[1,2] ;b[1,2];c=a|a.append(3);print(a,b,c)|
+| |a=8; print(a,b,c)|
+|a=[1,2];b[1,2];d=a.copy()|a.append(3);print(a,b,d)|
+| |a=8; print(a,b,c)|
+1. c=a --> 讓c is a,兩者位址及內容相同
+1. .copy()及.append(數值)只支援list
+1. '=' --> 將變數重新指向另一位址
+
+## 變數的範圍
+### 主程式
+內的變數，為全局變數;區域變數指出現在其他函式或副程式,全域變數的身命稱歧視整個*.py檔，區域變數則只在該函式或副程式中。
+### 主副程式內的變數名
+可以允許相同但為唯一存在：_____
+
+==>釐清目前使用你一變數（內容直)
+
+## ex
+
+```py
+def fun01():
+  num=10
+  print('在fun01中,num=',num)
+def fun02():
+  num =25
+  print('在fun02中，num=',num)
+num =8
+fun01()
+fun02()
+print('在main中,num=',num)
+```
+### 概念
+存在範圍
+![](./11-1/0.png)
+----
+
+### 副程式有定義變數時
+
+1. 宣告的方式 v.s改變的內容位址
+1. 此變數為區域變數(與全域不同，不連動影響)
+1. 副程式為定義變數的時候，會向外找全域變數
+
+## 副程式有變數要保留/傳出時
+1. 利用returm(變數)傳出
+1. 利用宣告為"全域變數" global
+多層副程式時最內層變數內容要保留道上遺層時宣告為"非區域變數" 
+```py
+nonlocal a
+```
+不同
+
+```py
+a=15
+b=20
+sum=a+b
+def add_gol():
+  global a,b,sum
+  a=50
+  b=40
+  sum=a+b
+  print("add_gol處:%3d=%3d+%3d"%(sum,a,b))
+def add_re():
+  a=55
+  b=30
+  sum=a+b
+  print("add_re處:%3d=%3d+%3d"%(sum,a,b))
+  return sum,a,b
+def add_out():
+  a = 30
+  sum = a+b
+  print("add_out處:%3d=%3d+%3d"%(sum,a,b))
+  def add_in():
+    nonlocal a 
+    a=10
+    b=25
+    sum=a+b
+    print("add_in處:%3d=%3d+%3d"%(sum,a,b))
+  add_in()
+  sum = a+b
+  print("add_in後:%3d=%3d+%3d"%(sum,a,b))
+print("主程式處:%3d=%3d+%3d"%(sum,a,b))
+add_gol()
+print("主試處(呼叫add_gol):%3d=%3d+%3d"%(sum,a,b))
+sum,a,b =add_re()
+print("主程式(add_re後):%3d=%3d+%3d"%(sum,a,b))
+add_out()
+sum=a+b
+print("主程式(add_out()):%3d=%3d+%3d"%(sum,a,b))
+```
+
+
